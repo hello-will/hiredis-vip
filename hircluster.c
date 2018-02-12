@@ -2078,6 +2078,8 @@ static void print_cluster_node_list(redisClusterContext *cc)
 
         printf("\n");
     }
+
+    dictReleaseIterator(di);
 }
 
 
@@ -3637,6 +3639,7 @@ static void *command_post_fragment(redisClusterContext *cc,
             NOT_REACHED();
         }
     }
+    listReleaseIterator(list_iter);
 
     reply = hi_calloc(1,sizeof(*reply));
 
@@ -3855,6 +3858,7 @@ void *redisClusterFormattedCommand(redisClusterContext *cc, char *cmd, int len) 
 
         sub_command->reply = reply;
     }
+    listReleaseIterator(list_iter);
 
     reply = command_post_fragment(cc, command, commands);
     
@@ -4322,6 +4326,7 @@ int redisClusterGetReply(redisClusterContext *cc, void **reply) {
 
         sub_command->reply = sub_reply;
     }
+    listReleaseIterator(list_iter);
 
     *reply = command_post_fragment(cc, command, commands);
     if(*reply == NULL)
@@ -5219,6 +5224,8 @@ void redisClusterAsyncDisconnect(redisClusterAsyncContext *acc) {
 
         node->acon = NULL;
     }
+
+    dictReleaseIterator(di);
 }
 
 void redisClusterAsyncFree(redisClusterAsyncContext *acc)
