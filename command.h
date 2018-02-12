@@ -126,27 +126,7 @@ typedef enum cmd_parse_result {
     ACTION( RSP_REDIS_INTEGER )                                                                     \
     ACTION( RSP_REDIS_BULK )                                                                        \
     ACTION( RSP_REDIS_MULTIBULK )                                                                   \
-    /* rejson command(https://github.com/RedisLabsModules/rejson/blob/master/docs/commands.md) */   \
-    ACTION( REQ_REDIS_JSON_DEL)                                                                     \
-    ACTION( REQ_REDIS_JSON_GET)                                                                     \
-    ACTION( REQ_REDIS_JSON_MGET)                                                                    \
-    ACTION( REQ_REDIS_JSON_SET)                                                                     \
-    ACTION( REQ_REDIS_JSON_TYPE)                                                                    \
-    ACTION( REQ_REDIS_JSON_NUMINCRBY)                                                               \
-    ACTION( REQ_REDIS_JSON_NUMMULTBY)                                                               \
-    ACTION( REQ_REDIS_JSON_STRAPPEND)                                                               \
-    ACTION( REQ_REDIS_JSON_STRLEN)                                                                  \
-    ACTION( REQ_REDIS_JSON_ARRAPPEND)                                                               \
-    ACTION( REQ_REDIS_JSON_ARRINDEX)                                                                \
-    ACTION( REQ_REDIS_JSON_ARRINSERT)                                                               \
-    ACTION( REQ_REDIS_JSON_ARRLEN)                                                                  \
-    ACTION( REQ_REDIS_JSON_ARRPOP)                                                                  \
-    ACTION( REQ_REDIS_JSON_ARRTRIM)                                                                 \
-    ACTION( REQ_REDIS_JSON_OBJKEYS)                                                                 \
-    ACTION( REQ_REDIS_JSON_OBJLEN)                                                                  \
-    /* end of rejson command */                                                                     \
     ACTION( SENTINEL )                                                                              \
-
 
 
 #define DEFINE_ACTION(_name) CMD_##_name,
@@ -179,9 +159,6 @@ struct cmd {
     char                 *narg_start;     /* narg start (redis) */
     char                 *narg_end;       /* narg end (redis) */
     uint32_t             narg;            /* # arguments (redis) */
-
-    char                 *path_start;     /* path start (json.mget) */
-    char                 *path_end;       /* path end (json.mget) */
 
     unsigned             quit:1;          /* quit request? */
     unsigned             noforward:1;     /* not need forward (example: ping) */
