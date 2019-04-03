@@ -33,7 +33,7 @@ set(
     ${CMAKE_CURRENT_LIST_DIR}/sds.c
 )
 
-set(LIB_NAME ${PROJECT_NAME}_static)
+set(LIB_NAME ${PROJECT_NAME})
 add_library(
     ${LIB_NAME}
     ${INC_LIST}
