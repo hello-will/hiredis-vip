@@ -6,4 +6,4 @@ include_directories(
 )
 
 add_executable(example_cluster example_cluster.c)
-target_link_libraries(example_cluster hiredis-vip_static)
+target_link_libraries(example_cluster hiredis-vip)
